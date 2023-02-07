@@ -1,56 +1,27 @@
-# Удаление первого и последнего вхождения.
-# a_str = 'I am learning Python. hello, WORLD!'
-# r_str = a_str[:a_str.find('h')]
-# f_str = a_str[1 + a_str.rfind('h'):]
-# print(r_str)
-# print(f_str)
-#
-# df = r_str + f_str
-# print(df)
+# Проверка соответствия пароля.
 import re
 
-# Разворот последовательности символов между первым и последним вхождением символа "h" в противоположном порядке.
-# ztr = 'I am learning Python. hello, WORLD!'
-# r_str = ztr[:ztr.find('h') + 1]
-# f_str = ztr[1 + ztr.find('h'):]
-# jraf = f_str[:f_str.find('h')]
-# tre = ''.join(reversed(jraf))
-# ar = tre.lstrip()
-# fraj = f_str[f_str.find('h'):]
-# concatin = ar + fraj
-# ra = ' ' + concatin
-# con_concatin = r_str + ra
-# print(r_str)
-# print(ar)
-# print(fraj)
-# print(concatin)
-# print(ra)
-# print(con_concatin)
+# pattern_password = '[a-zA-Z0-9_@-]{6,18}'
+# k = input('Введите пароль: ')
+# t = len(k)
+# result = re.findall(pattern_password, k)
+# print(result)
+# #
+# if 6 <= t <= 18:
+#     print('Password is valid!!')
+# else:
+#     print('Password not valid!')
 
 
-# Замена подстроки.
 
-# n = input("Строка: ")
+# Вывод даты.
+
+
+# text = 'В июне 2021 года, 02/06/2021, 05/06/2021, 14/06/2021, были зафиксированы максимумы ежемесечных осадков.'
+# # new_text = r'\b[0][2][/][0][6][/][2][0-2][0-2][1]'
+# # rg = r'\b[0][2]/[0][6]/'
+# rg = '[0-2][0-9]/[0-5][0-9]/[0-2][0-2][1-2][0-1]'
 #
-# print(n)
-# i = input("Заменяемая подстрока: ")
-# print(i)
-# je = input('Новая подстрока: ')
-# drf = n.replace(i, je)
-# print('Конечный результат: ',  drf)
-
-
-# Найти колличество слов, начинающихся с буквы "е".
-#
-# a_str = 'Ежевику для ежат  еле-еле принесли два ежа'
-# lk = a_str.split(" ")
-# i_str = 'е'
-# l = ''
-#
-# for k in lk:
-#     if k.startswith(i_str):
-#         o = l.join(k)
-#         print(o)
-
+# print(re.findall(rg, text))
 
 
