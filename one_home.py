@@ -1,47 +1,40 @@
-a = [1, 15, 66]
-b = [22, 33, 15]
-d = [5, 6799]
-e = [14, 44, 999]
-c = [a, b, d, e]
-p = c[0]
-t = c[1]
-p_1 = c[2]
-p_2 = c[3]
-r = *p, *t, *p_1, *p_2
-last_list = list(r)
-print(last_list)
+with open('my_homework_file.txt', 'w+') as home_file:
+    home_file.write('Заменить строки в текстовом файле; \nизменить строку в списке; \nзаписать список в файл')
 
-user_entered = int(input('Введите число сортировки, если 1 - по возрастанию, 2 - по убыванию: '))
-
-if user_entered == 1:
-    last_list.sort()
-    print(last_list)
-elif user_entered == 2:
-    last_list.sort(reverse=True)
-    print(last_list)
+hom_fil = open('my_homework_file.txt', 'r')
+read_file = hom_fil.readlines()
+print(read_file)
+x_file = read_file[0]
+read_file[0] = read_file[1]
+read_file[1] = x_file
+print(read_file)
+read_file[0] = 'Изменить строку толь ко одну'
+print(read_file)
+last_file = open('my_homework_file.txt', 'w')
+last_file.writelines(read_file)
+last_file.close()
 
 
-def sequential_search(x, y):
-    element__position = 0
-    while element__position < len(x):
-        if x[element__position] == y:
-            function_print = 'Ваш выбор был: ', y
-            return function_print
+with open('my_homework.txt', 'w+') as home_file:
+    home_file.write('Заменить строки в текстовом файле; \nизменить строку в списке; \nзаписать список в файл')
 
-        elif x[element__position] != y:
-            print('Вы ввели несуществующий элемент списка')
-            break
-        else:
-            element__position += 1
+f = open('my_homework.txt', 'r')
+reading_file = f.readlines()
+print(reading_file)
+
+reading_file.reverse()
+print(reading_file)
 
 
-user_choices = int(input('Введите искомый элемент: '))
-print(sequential_search(last_list, user_choices))
+a_d = 'my_homework_file.txt'
+d_a = 'my_homework.txt'
 
+with open(a_d, 'r') as f, open(d_a, 'r') as fi:
+    new = f.read(), fi.read()
+    print(new)
 
-
-
-
-
-
+print(new)
+fo = open('threefile.txt', 'w+')
+fo.writelines(new)
+fo.close()
 
