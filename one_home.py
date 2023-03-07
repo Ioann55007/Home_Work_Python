@@ -1,52 +1,94 @@
-import math
-from math import pi
+class Account:
+    rate_us = 0.013
+    rate_eur = 0.011
+    sufix = 'RUB'
+    sufix_usd = 'USD'
+    sufix_er = 'EUR'
+    commission = 5
 
 
-class Sphere:
+    def __init__(self, num, surname, percent, value=0):
+        self.num = num
+        self.surname = surname
+        self.percent = percent
+        self.value = value
+        print(f"Счёт #{self.num} принадлежащий {self.surname} был открыт")
+        print("*" * 50)
 
-    def __init__(self, get_square, set_radius, get_volume, set_center, get_center, get_radius, is_point_inside):
-        self.get_volume = get_volume
-        self.get_square = get_square
-        self.get_radius = get_radius
-        self.get_center = get_center
-        self.set_radius = set_radius
-        self.get_radius = get_radius
-        self.set_center = set_center
-        self.is_point_inside = is_point_inside
+    def __del__(self):
+        print(f'Счёт владельца {self.surname} закрыт')
+
+    @classmethod
+    def set_usd_rate(cls, rate):
+        cls.rate_usd = rate
+
+    @staticmethod
+    def convert(value, rate):
+        return value * rate
+
+    @staticmethod
+    def give_commission():
+        return Account.commission
 
 
-    @property
-    def get_sphere(self):
-        self.get_square = 4 * pi * self.set_radius ** 2
-        self.get_volume = 4 / 3 * (pi * self.set_radius ** 3)
-        get_square = ('Выводим площадь сферы: ', self.get_square)
-        get_volume = ('Выводим обьём шара: ', self.get_volume)
-        self.get_center = self.set_center
-        get_center = ("Выводим центр сферы: ", self.get_center)
-        self.get_radius = self.set_radius
-        get_radius = ('Выводим радиус сферы ', self.get_radius)
+    def convert_to_usd(self):
+        usd_val = Account.convert(self.value, Account.rate_us)
+        usd_vale = Account.convert(self.value, Account.rate_eur)
+        print(f"Состояние счёта: {usd_val}{Account.sufix}.")
+        print(f"Состояние счёта: {usd_vale}{Account.sufix_usd}.")
 
-        return get_square, get_volume, get_center, get_radius
+    def print_balanc(self):
+        print(f'Текущий баланс {self.value}{Account.sufix}')
 
-    @get_sphere.setter
-    def get_sphere(self, value):
-        self.set_radius = value
+    def print_info(self):
+        print('Инфа о счёте')
+        print(f"#{self.num}")
+        print(f"Владелец: {self.surname}")
+        self.print_balanc()
+        print(f'Процент: {self.percent:.0%}')
+        print('-' * 20)
 
-        self.set_center = value
+    def edit_owner(self, surname):
+        self.surname = surname
 
-    def point_inside(self, x, y, z):
+    def add_percent(self):
+        self.value += self.value * self.percent
+        print('Проценты начислены!')
+        self.print_balanc()
 
-        if math.sqrt((x - x) ** 2 + (y - y) ** 2 + (z - z) ** 2) <= self.set_radius:
 
-            return True
+    def with_drow_many(self, val):
+        if val > self.value:
+            print(f"К сожалению у вас нет заданной суммы  денег {val}{Account.sufix}")
+
+
         else:
-            return False
+            print(f'Ваша коммиссия: {self.give_commission()}%')
+            print_commission = (self.value / 100) * self.give_commission()
+            val -= print_commission
+            self.value -= val
+            print(f"{val}{Account.sufix} было успешно снято!")
+        self.print_balanc()
+
+    def add_many(self, val):
+        self.value += val
+        print(f"{val}{Account.sufix} было успешно добавлено!")
+        self.print_balanc()
 
 
-t = 12, 32, 11
-oz = Sphere(None, 18, None, t, None, None, None)
-print(oz.get_sphere)
-print(oz.point_inside(12, 13, 444))
-print('Радиус сферы установлен в значении: ', oz.set_radius)
+account = Account('12345', 'Долгих', 0.03, 1000)
+account.print_info()
+account.convert_to_usd()
+account.edit_owner('Дима')
+account.print_info()
+account.add_percent()
+print()
+account.with_drow_many(100)
+account.add_many(5000)
+account.with_drow_many(2000)
+
+
+
+
 
 
