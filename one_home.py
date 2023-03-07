@@ -1,94 +1,89 @@
-class Account:
-    rate_us = 0.013
-    rate_eur = 0.011
-    sufix = 'RUB'
-    sufix_usd = 'USD'
-    sufix_er = 'EUR'
-    commission = 5
+class Pair:
+    def __init__(self, a, b):
+        self.A = a
+        self.B = b
+
+    def multiple_pair(self):
+        print('Произведение чисел:')
+        return self.A * self.B
+
+    def sum_pair(self):
+        print('Сумма:')
+        return self.A + self.B
 
 
-    def __init__(self, num, surname, percent, value=0):
-        self.num = num
-        self.surname = surname
-        self.percent = percent
-        self.value = value
-        print(f"Счёт #{self.num} принадлежащий {self.surname} был открыт")
-        print("*" * 50)
-
-    def __del__(self):
-        print(f'Счёт владельца {self.surname} закрыт')
-
-    @classmethod
-    def set_usd_rate(cls, rate):
-        cls.rate_usd = rate
-
-    @staticmethod
-    def convert(value, rate):
-        return value * rate
-
-    @staticmethod
-    def give_commission():
-        return Account.commission
+pt = Pair(17, 32)
+print(pt.sum_pair())
+print(pt.multiple_pair())
 
 
-    def convert_to_usd(self):
-        usd_val = Account.convert(self.value, Account.rate_us)
-        usd_vale = Account.convert(self.value, Account.rate_eur)
-        print(f"Состояние счёта: {usd_val}{Account.sufix}.")
-        print(f"Состояние счёта: {usd_vale}{Account.sufix_usd}.")
+class RightTriangle:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
-    def print_balanc(self):
-        print(f'Текущий баланс {self.value}{Account.sufix}')
+    def my_method(self):
+        f = self.a ** 2 + self.b ** 2
+        print(f'Выводим гипотенузу треугольника: {f}')
+        return f
 
-    def print_info(self):
-        print('Инфа о счёте')
-        print(f"#{self.num}")
-        print(f"Владелец: {self.surname}")
-        self.print_balanc()
-        print(f'Процент: {self.percent:.0%}')
-        print('-' * 20)
+    def square_method(self):
+        g = (self.a * self.b) // 2
+        print(f'Выводим площадь треугольника: {g}')
+        return g
 
-    def edit_owner(self, surname):
-        self.surname = surname
-
-    def add_percent(self):
-        self.value += self.value * self.percent
-        print('Проценты начислены!')
-        self.print_balanc()
+    def print_methods(self):
+        c = f' Прямоугольный треугольник с гипотенузой : {self.my_method()} и площадью: {self.square_method()} задан'
+        return c
 
 
-    def with_drow_many(self, val):
-        if val > self.value:
-            print(f"К сожалению у вас нет заданной суммы  денег {val}{Account.sufix}")
+o = RightTriangle(10, 20)
+# print(o.my_method())
+# print(o.square_method())
+print(o.print_methods())
 
 
-        else:
-            print(f'Ваша коммиссия: {self.give_commission()}%')
-            print_commission = (self.value / 100) * self.give_commission()
-            val -= print_commission
-            self.value -= val
-            print(f"{val}{Account.sufix} было успешно снято!")
-        self.print_balanc()
-
-    def add_many(self, val):
-        self.value += val
-        print(f"{val}{Account.sufix} было успешно добавлено!")
-        self.print_balanc()
+class Parent:
+    def __init__(self, sx):
+        self.sx = sx
 
 
-account = Account('12345', 'Долгих', 0.03, 1000)
-account.print_info()
-account.convert_to_usd()
-account.edit_owner('Дима')
-account.print_info()
-account.add_percent()
-print()
-account.with_drow_many(100)
-account.add_many(5000)
-account.with_drow_many(2000)
+class Sun(Parent):
 
 
+    def func_sun(self, x):
+        d = f"Возвращаем: {self.sx, x}"
+        return d
 
 
+o = Sun(Parent(120))
+print(o)
+print(o.func_sun(2))
+po = Sun(120)
+print(po.func_sun(19))
+
+
+class Parent:
+    def __init__(self, sx):
+        self.sx = sx
+
+
+#
+class Sun(Parent):
+
+    def __init__(self, sx, v):
+        self.v = v
+        self.sx = sx
+        super().__init__(self)
+
+    def op(self, a, b):
+        self.sx = a
+        self.v = b
+        ret = f"Выводим {a, b}"
+        return ret
+
+
+oop = Sun(Parent(120), 2)
+print(oop.op(120, 12))
 
 
